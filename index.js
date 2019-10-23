@@ -16,13 +16,13 @@ module.exports = app => {
   app.on('push', async context => {
     const defaults = {
       branches: context.payload.repository.default_branch,
-      'change-template': `* $TITLE (#$NUMBER) @$AUTHOR`,
-      'no-changes-template': `* No changes`,
+      'change-template': `- $TITLE (#$NUMBER) @$AUTHOR`,
+      'no-changes-template': `- No changes`,
       'version-template': `$MAJOR.$MINOR.$PATCH`,
       categories: [],
-      'exclude-labels': [],
+      'exclude-labels': ['type: release', 'type: junk'],
       replacers: [],
-      'sort-direction': SORT_DIRECTIONS.descending
+      'sort-direction': SORT_DIRECTIONS.ascending
     }
     const config = Object.assign(
       defaults,
